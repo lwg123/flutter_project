@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
 
                return EasyRefresh(
                     refreshFooter: ClassicsFooter(
-                      key:_footerkey,
+                      key:_footerkey, //需要添加一个key
                       bgColor: Colors.white,
                       textColor: Colors.pink,
                       moreInfoColor: Colors.pink,
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                       loadReadyText: '上拉加载',
                     ),
 
-                    child: ListView( // 超出边界处理方法
+                    child: ListView( // 使用EasyRefresh刷新控件要求必须用ListView
                       children: <Widget>[
                         SwiperDiy(swiperDataList: swiper),//页面顶部轮播图
                         TopNavigator(navigatorList: navigatorList),
@@ -232,6 +232,7 @@ class TopNavigator extends StatelessWidget {
       height: ScreenUtil().setHeight(320),
       padding: EdgeInsets.all(3.0),
       child: GridView.count(
+        physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 5,
         padding: EdgeInsets.all(5.0),
         children: navigatorList.map((item){
