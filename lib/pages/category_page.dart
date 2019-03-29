@@ -5,6 +5,7 @@ import '../model/category.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import '../provide/child_category.dart';
+import '../model/categoryGoodsList.dart';
 
 
 class CategoryPage extends StatefulWidget {
@@ -25,6 +26,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Column(
               children: <Widget>[
                 RightCategoryNav(),
+                CategoryGoodsList()
               ],
             )
           ],
@@ -166,4 +168,40 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
     );
   }
 
+}
+
+
+class CategoryGoodsList extends StatefulWidget {
+  @override
+  _CategoryGoodsListState createState() => _CategoryGoodsListState();
+}
+
+class _CategoryGoodsListState extends State<CategoryGoodsList> {
+  @override
+  void initState() {
+    _getGoodsList();
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('商品列表'),
+    );
+  }
+
+  void _getGoodsList() async {
+    var data = {
+      'categoryId':'4',
+      'categorySubId':"",
+      'page':1
+    };
+    await request('getMallGoods',formData:data).then((val){
+        var data = json.decode(val.toString());
+        CategoryGoodsListModel goodsList =CategoryGoodsListModel.fromJson(data);
+        setState(() {
+         // list =goodsList.data;
+        });
+        print('>>>>>>>>>>>>>:${goodsList.data[0].goodsName}');
+    });
+  }
 }
