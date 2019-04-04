@@ -9,8 +9,8 @@ import 'package:fluro/fluro.dart';
 void main() {
   var childCategory =ChildCategory();
   var categoryCoodsListProvide = CategoryGoodsListProvide();
-
   var counter =Counter();
+  final router = Router();
   
   var providers = Providers();
   providers
