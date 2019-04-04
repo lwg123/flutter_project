@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class DetailsPage extends StatelessWidget {
   final String goodsId;
   DetailsPage(this.goodsId);
