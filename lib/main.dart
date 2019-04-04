@@ -4,6 +4,7 @@ import 'package:provide/provide.dart';
 import './provide/counter.dart';
 import './provide/child_category.dart';
 import './provide/category_goods_list.dart';
+import './provide/details_info.dart';
 import 'package:fluro/fluro.dart';
 import './routers/routes.dart';
 import './routers/application.dart';
@@ -11,6 +12,7 @@ import './routers/application.dart';
 void main() {
   var childCategory =ChildCategory();
   var categoryCoodsListProvide = CategoryGoodsListProvide();
+  var detailsInfoProvide = DetailsInfoProvide();
   var counter =Counter();
   //router注入整个程序
   final router = Router();
@@ -21,6 +23,7 @@ void main() {
   providers
   ..provide(Provider<Counter>.value(counter))
   ..provide(Provider<CategoryGoodsListProvide>.value(categoryCoodsListProvide))
+  ..provide(Provider<DetailsInfoProvide>.value(detailsInfoProvide))
   ..provide(Provider<ChildCategory>.value(childCategory));
   
   runApp(ProviderNode(child:MyApp(),providers:providers));
